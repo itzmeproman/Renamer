@@ -1,27 +1,3 @@
-"""
-Apache License 2.0
-Copyright (c) 2022 @PYRO_BOTZ
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-Telegram Link : https://t.me/PYRO_BOTZ 
-Repo Link : https://github.com/TEAM-PYRO-BOTZ/PYRO-RENAME-BOT
-License Link : https://github.com/TEAM-PYRO-BOTZ/PYRO-RENAME-BOT/blob/main/LICENSE
-"""
-
 import random
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ForceReply, CallbackQuery, Message, InputMediaPhoto
@@ -34,13 +10,13 @@ async def start(client, message):
     user = message.from_user
     await db.add_user(client, message)                
     button = InlineKeyboardMarkup([[
-      InlineKeyboardButton("⚡ 𝖢𝗈𝗆𝗆𝖺𝗇𝖽𝗌 ⚡", callback_data='commands')
+      InlineKeyboardButton("Commands", callback_data='commands')
     ],[
-      InlineKeyboardButton('Uᴩᴅᴀᴛᴇꜱ', url='https://t.me/Nation_Bots'),
-      InlineKeyboardButton('Sᴜᴩᴩᴏʀᴛ', url='https://t.me/Nation_Support')
+      InlineKeyboardButton('Updates', url='https://t.me/UchihaPoliceUpdates'),
+      InlineKeyboardButton('Support', url='https://t.me/UchihaPolice_Support')
     ],[
-      InlineKeyboardButton('Hᴇʟᴘ', callback_data='about'),
-      InlineKeyboardButton('Pʀᴇᴍɪᴜᴍ', callback_data='premium')
+      InlineKeyboardButton('Help', callback_data='about'),
+      InlineKeyboardButton('Premium', callback_data='premium')
     ]])
     if Config.START_PIC:
         await message.reply_photo(Config.START_PIC, caption=Txt.START_TXT.format(user.mention), reply_markup=button)       
@@ -59,8 +35,8 @@ async def cb_handler(client, query: CallbackQuery):
             reply_markup=InlineKeyboardMarkup([[
                 InlineKeyboardButton("⚡ 𝖢𝗈𝗆𝗆𝖺𝗇𝖽𝗌 ⚡", callback_data='commands')
                 ],[
-                InlineKeyboardButton('Uᴩᴅᴀᴛᴇꜱ', url='https://t.me/Nation_Bots'),
-                InlineKeyboardButton('Sᴜᴩᴩᴏʀᴛ', url='https://t.me/Nation_Support')
+                InlineKeyboardButton('Uᴩᴅᴀᴛᴇꜱ', url='https://t.me/UchihaPoliceUpdates'),
+                InlineKeyboardButton('Sᴜᴩᴩᴏʀᴛ', url='https://t.me/UchihaPolice_Support')
                 ],[
                 InlineKeyboardButton('Hᴇʟᴘ', callback_data='about'),
                 InlineKeyboardButton('Pʀᴇᴍɪᴜᴍ', callback_data='premium')
@@ -71,7 +47,7 @@ async def cb_handler(client, query: CallbackQuery):
             text=Txt.PREMIUM_TXT,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton('Bᴜʏ Nᴏᴡ ⚡', url='https://t.me/Trippy_xt')
+                InlineKeyboardButton('Contact', url='https://t.me')
                 ],[
                 InlineKeyboardButton("Cʟᴏꜱᴇ", callback_data="close"),
                 InlineKeyboardButton("Bᴀᴄᴋ", callback_data="about")
@@ -85,7 +61,7 @@ async def cb_handler(client, query: CallbackQuery):
                 InlineKeyboardButton("Sᴇᴛᴜᴘ Aᴜᴛᴏʀᴇɴᴀᴍᴇ Fᴏʀᴍᴀᴛ", callback_data='file_names')
                 ],[
                 InlineKeyboardButton('Tʜᴜᴍʙɴᴀɪʟ', callback_data='thumbnail'),
-                InlineKeyboardButton('Sᴇǫᴜᴇɴᴄᴇ', url='https://t.me/File_Sequencer_Bot')
+                InlineKeyboardButton('Sᴇǫᴜᴇɴᴄᴇ', url='https://t.me/Soon')
                 ],[
                 InlineKeyboardButton('Pʀᴇᴍɪᴜᴍ', callback_data='premium'),
                 InlineKeyboardButton('Aʙᴏᴜᴛ', callback_data='about')
