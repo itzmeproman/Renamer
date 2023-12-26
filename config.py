@@ -6,18 +6,18 @@ class Config(object):
     # pyro client config
     API_ID    = os.environ.get("API_ID", "22418774")
     API_HASH  = os.environ.get("API_HASH", "d8c8dab274f9a811814a6a96d044028e")
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "6666712642:AAEmXMxOnmvX_6QkhwuqENHagX-VyV0WHes") 
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "6451712184:AAGa_lWsF2-Hnt1KZxPJb0RD2dsBDNDcWy0") 
 
     # database config
-    DB_NAME = os.environ.get("DB_NAME","pyro-botz")     
+    DB_NAME = os.environ.get("DB_NAME","obi")     
     DB_URL  = os.environ.get("DB_URL","mongodb+srv://mehtadmphta33:Mehtab1234@cluster0.bfsb3oq.mongodb.net/?retryWrites=true&w=majority")
  
     # other configs
     BOT_UPTIME  = time.time()
-    START_PIC   = os.environ.get("START_PIC", "https://telegra.ph/file/9ed88c947267291245a4c.jpg")
-    ADMIN       = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '6446763201').split()]
-    FORCE_SUB   = os.environ.get("FORCE_SUB", "Nation_bots") 
-    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002099814452"))
+    START_PIC   = os.environ.get("START_PIC", "https://graph.org/file/f790ec7a62cc53dd7e4bc.jpg")
+    ADMIN       = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '6265459491 6299128233').split()]
+    FORCE_SUB   = os.environ.get("FORCE_SUB", "UchihaPoliceUpdates") 
+    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002008965715"))
 
     # wes response configuration     
     WEBHOOK = bool(os.environ.get("WEBHOOK", "True"))
@@ -27,43 +27,25 @@ class Txt(object):
     # part of text configuration
         
     START_TXT = """Hello {}
-
-⚡ 𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎 𝐍𝐀𝐓𝐈𝐎𝐍'𝐒 𝐀𝐃𝐕𝐀𝐍𝐂𝐄𝐃 𝐑𝐄𝐍𝐀𝐌𝐄 𝐁𝐎𝐓! ⚡
-
-➝  Introducing Advanced Rename Bot – your ultimate solution for effortless file renaming, featuring customizable captions, thumbnails, and seamless sequencing.
-────────────────────
-✨ Tʜɪs Bᴏᴛ ɪs Cʀᴇᴀᴛᴇᴅ ʙʏ <a href='https://t.me/Trippy_xt'>Tʀɪᴘᴘʏ</a>
-────────────────────
-➝  For assistance or more How to use me, use the " /Tutorial "command or you can use the below "Support" button to contact us.
-
-‼️ Explore my commands by clicking on the "⚡ Commands ⚡" button to use me more precisely " ‼️
-
-🚀 𝐋𝐄𝐓'𝐒 𝐆𝐄𝐓 𝐒𝐓𝐀𝐑𝐓𝐄𝐃! 🚀"""
+I'm **Obito Uchiha**, an autorename bot that renames anime files to the format you set."
+To see my functions, use the buttons below."""
     
     FILE_NAME_TXT = """
-    <u><b>SETUP AUTO RENAME FORMAT</b></u>\n\nUse These Keywords To Setup Custom File Name\n\n➝ episode :- to replace episode number\n➝ quality :- to replace video resolution\n\n‣ <b>Example :</b> /autorename [AX] S02 - EPepisode Spy X Family [quality] [Sub] @Animes_XYZ.mkv\n\n‣ <b>Your Current Rename Format :</b> {format_template}
+    <u><b>SETUP AUTO RENAME FORMAT</b></u>\n\nUse These Keywords To Setup Custom File Name\n\n➝ episode :- to replace episode number\n➝ quality :- to replace video resolution\n\n‣ <b>Example :</b> /autorename [AL] High Card S1 - Eepisode [quality] Sub @Anime_Locus.mkv\n\n‣ <b>Your Current Rename Format :</b> {format_template}
     """
     
     ABOUT_TXT = f"""
-<b>╔════════════⦿
-├⋗ ᴄʀᴇᴀᴛᴏʀ : <a href='tg://user?id={6446763201}'>⚚ 𝐓𝐑𝐈𝐏𝐏𝐘 ❄️ </a>
-├⋗ ʟᴀɴɢᴜᴀɢᴇ : <code>Python3</code>
-├⋗ ʟɪʙʀᴀʀʏ : <a href='https://docs.pyrogram.org/'>Pyrogram</a>
-├⋗ ꜱᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : <a href='https://t.me/Trimppy/2'>Click Here</a>
-├⋗ Main Channel : <a href='https://t.me/Animes_Xyz'>Anime Channel</a>
-├⋗ Support Group : <a href='https://t.me/Animetalks0'>Group Chat</a>
-╚═════════════════⦿</b>
+Idk credit kisko du avi..
 """
 
     
-    THUMB_TXT = """ just send the image nigga"""
+    THUMB_TXT = """ just send the image."""
 
-    PREMIUM_TXT = """Free hai
-    
-    isi baat pe @Trippy_xt ko tg premium gift karo 🙂"""
+    PREMIUM_TXT = """Hm Soon
+    for now free use kr lo"""
 
 #⚠️ Dᴏɴ'ᴛ Rᴇᴍᴏᴠᴇ Oᴜʀ Cʀᴇᴅɪᴛꜱ @ᴩyʀᴏ_ʙᴏᴛᴢ🙏🥲
-    COMMANDS_TXT = """<b><u>/autorename - bad mein likunga abhi mood nhi hai</b></u>
+    COMMANDS_TXT = """<b><u>/autorename - user format</b></u>
     """
 
     PROGRESS_BAR = """<b>\n
