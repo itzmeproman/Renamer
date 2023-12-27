@@ -34,19 +34,43 @@ To see my functions, use the buttons below."""
     <u><b>SETUP AUTO RENAME FORMAT</b></u>\n\nUse These Keywords To Setup Custom File Name\n\n➝ episode :- to replace episode number\n➝ quality :- to replace video resolution\n\n‣ <b>Example :</b> /autorename [AL] High Card S1 - Eepisode [quality] Sub @Anime_Locus.mkv\n\n‣ <b>Your Current Rename Format :</b> {format_template}
     """
     
-    ABOUT_TXT = f"""
-Idk credit kisko du avi..
+    ABOUT_TXT = f"""<b>╭───────────⍟
+├🤖 My name: <a href=http://t.me/UchihaObito_xBot>Uᴄʜɪʜᴀ Oʙɪᴛᴏ</a>
+├🖥️ Developers: <a href=https://t.me/BIackHatDev>BʟᴀᴄᴋHᴀᴛDᴇᴠ</a> 
+├📕 Library: <a href=https://github.com/pyrogram>Pyʀᴏɢʀᴀᴍ</a>
+├✏️ Language: <a href=https://www.python.org>Pyᴛʜᴏɴ3</a>
+├💾 Data Base: <a href=https://cloud.mongodb.com>Mᴏɴɢᴏ DB</a>
+├📊 Build Version: `OBI V1.7.0`
+├🔗 GitHub: <a href=https://github.com/illuminati-Dev>GitHub</a>
+├📧 Contact: <a href=https://telegram.me/>Soon</a>
+╰───────────────⍟ 
 """
 
     
-    THUMB_TXT = """ just send the image."""
+    THUMB_TXT = """ • /start the bot and send any photo to automatically set the thumbnail.
+• /del_thumb to delete your old thumbnail.
+• /view_thumb to view your current thumbnail."""
 
     PREMIUM_TXT = """Hm Soon
     for now free use kr lo"""
 
 #⚠️ Dᴏɴ'ᴛ Rᴇᴍᴏᴠᴇ Oᴜʀ Cʀᴇᴅɪᴛꜱ @ᴩyʀᴏ_ʙᴏᴛᴢ🙏🥲
-    COMMANDS_TXT = """<b><u>/autorename - user format</b></u>
-    """
+    COMMANDS_TXT = """🌌 How To Set Thumbnail
+  
+• /start the bot and send any photo to automatically set the thumbnail.
+• /del_thumb to delete your old thumbnail.
+• /view_thumb to view your current thumbnail.
+
+📑 How To Set Custom Caption
+• /set_caption - Use this command to set a custom caption.
+• /see_caption - Use this command to view your custom caption.
+• /del_caption - Use this command to delete your custom caption.
+Example: /set_caption 📕 File Name: {filename}
+💾 Size: {filesize}
+⏰ Duration: {duration}
+
+✏️ How To Rename A File
+• Send any file and type the new file name and select the format [document, video, audio].    """
 
     PROGRESS_BAR = """<b>\n
 ╭━━━━❰ᴘʀᴏɢʀᴇss ʙᴀʀ❱━➣
