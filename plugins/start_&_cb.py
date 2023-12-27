@@ -41,8 +41,11 @@ async def cb_handler(client, query: CallbackQuery):
             ]])
         )
     elif data == "about":
-        await query.message.edit_text(
-            text=Txt.ABOUT_TXT.format(client.mention),
+        await query.message.edit_media(
+            media=InputMediaVideo(Config.START_PIC),
+            
+        await query.message.edit_caption(
+            caption=Txt.ABOUT_TXT.format(client.mention),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[
                 InlineKeyboardButton("Sᴇᴛᴜᴘ Aᴜᴛᴏʀᴇɴᴀᴍᴇ Fᴏʀᴍᴀᴛ", callback_data='file_names')
