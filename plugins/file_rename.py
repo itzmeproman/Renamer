@@ -17,6 +17,7 @@ from collections import deque
 
 renaming_operations = {}
 file_queue = deque()  # Queue to store files for processing
+MAX_FILES_PER_BATCH = 5
 
 pattern1 = re.compile(r'S(\d+)(?:E|EP)(\d+)')
 pattern2 = re.compile(r'S(\d+)\s*(?:E|EP|-\s*EP)(\d+)')
@@ -115,19 +116,16 @@ async def auto_rename_files(client, message):
     if not format_template:
         return await message.reply_text("Please set an auto rename format first using /autorename")
 
-    if len(file_queue) >= 5:
-        return await message.reply_text("You have reached the maximum queue limit. Please wait for processing to complete.")
-
     file_queue.append(message)
 
+    if len(file_queue) >= MAX_FILES_PER_BATCH:
+        await process_file_batch(client)
 
-async def process_queue(client):
-    while True:
-        if file_queue:
-            message = file_queue.popleft()
-            await process_file(client, message)
-        else:
-            await asyncio.sleep(5)  # Adjust the sleep duration as needed
+
+async def process_file_batch(client):
+    for _ in range(min(MAX_FILES_PER_BATCH, len(file_queue))):
+        message = file_queue.popleft()
+        await process_file(client, message)
 
 
 async def process_file(client, message):
@@ -264,3 +262,4 @@ async def process_file(client, message):
             os.remove(ph_path)
             
         del renaming_operations[file_id]
+
