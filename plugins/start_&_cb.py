@@ -1,7 +1,7 @@
 import random
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ForceReply, CallbackQuery, Message, InputMediaPhoto
-
+from pyrogram.types import InputMediaVideo
 from helper.database import db
 from config import Config, Txt  
 
