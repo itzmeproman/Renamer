@@ -15,11 +15,10 @@ async def start(client, message):
       InlineKeyboardButton('Updates', url='https://t.me/UchihaPoliceUpdates'),
       InlineKeyboardButton('Support', url='https://t.me/UchihaPolice_Support')
     ],[
-      InlineKeyboardButton('Help', callback_data='about'),
-      InlineKeyboardButton('Premium', callback_data='premium')
+      InlineKeyboardButton('Help', callback_data='about')
     ]])
     if Config.START_PIC:
-        await message.reply_photo(Config.START_PIC, caption=Txt.START_TXT.format(user.mention), reply_markup=button)       
+        await message.reply_video(Config.START_PIC, caption=Txt.START_TXT.format(user.mention), reply_markup=button)       
     else:
         await message.reply_text(text=Txt.START_TXT.format(user.mention), reply_markup=button, disable_web_page_preview=True)   
 
@@ -38,20 +37,8 @@ async def cb_handler(client, query: CallbackQuery):
                 InlineKeyboardButton('Uᴩᴅᴀᴛᴇꜱ', url='https://t.me/UchihaPoliceUpdates'),
                 InlineKeyboardButton('Sᴜᴩᴩᴏʀᴛ', url='https://t.me/UchihaPolice_Support')
                 ],[
-                InlineKeyboardButton('Hᴇʟᴘ', callback_data='about'),
-                InlineKeyboardButton('Pʀᴇᴍɪᴜᴍ', callback_data='premium')
+                InlineKeyboardButton('Hᴇʟᴘ', callback_data='about')
             ]])
-        )
-    elif data == "premium":
-        await query.message.edit_text(
-            text=Txt.PREMIUM_TXT,
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton('Contact', url='https://t.me')
-                ],[
-                InlineKeyboardButton("Cʟᴏꜱᴇ", callback_data="close"),
-                InlineKeyboardButton("Bᴀᴄᴋ", callback_data="about")
-            ]])            
         )
     elif data == "about":
         await query.message.edit_text(
@@ -63,7 +50,6 @@ async def cb_handler(client, query: CallbackQuery):
                 InlineKeyboardButton('Tʜᴜᴍʙɴᴀɪʟ', callback_data='thumbnail'),
                 InlineKeyboardButton('Sᴇǫᴜᴇɴᴄᴇ', url='https://t.me/Soon')
                 ],[
-                InlineKeyboardButton('Pʀᴇᴍɪᴜᴍ', callback_data='premium'),
                 InlineKeyboardButton('Aʙᴏᴜᴛ', callback_data='about')
                 ],[
                 InlineKeyboardButton('Hᴏᴍᴇ', callback_data='start')
