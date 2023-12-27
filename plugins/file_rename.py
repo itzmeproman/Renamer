@@ -264,6 +264,3 @@ async def process_file(client, message):
             os.remove(ph_path)
             
         del renaming_operations[file_id]
-
-
-asyncio.create_task(process_queue(client))
