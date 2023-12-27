@@ -16,7 +16,7 @@ import re
 from collections import deque
 
 renaming_operations = {}
-file_queue = deque()  # Queue to store files for processing
+file_queue = deque()  
 MAX_FILES_PER_BATCH = 5
 
 pattern1 = re.compile(r'S(\d+)(?:E|EP)(\d+)')
@@ -91,41 +91,15 @@ def extract_episode_number(filename):
     return None
 
 
-@Client.on_message(filters.private & filters.command("autorename"))
-async def auto_rename_command(client, message):
-    user_id = message.from_user.id
-    format_template = message.text.split("/autorename", 1)[1].strip()
-    await db.set_format_template(user_id, format_template)
-    await message.reply_text("Auto rename format updated successfully!")
-
-
-@Client.on_message(filters.private & filters.command("setmedia"))
-async def set_media_command(client, message):
-    user_id = message.from_user.id
-    media_type = message.text.split("/setmedia", 1)[1].strip().lower()
-    await db.set_media_preference(user_id, media_type)
-    await message.reply_text(f"Media preference set to: {media_type}")
-
-
-@Client.on_message(filters.private & (filters.document | filters.video | filters.audio))
-async def auto_rename_files(client, message):
-    user_id = message.from_user.id
-    format_template = await db.get_format_template(user_id)
-    media_preference = await db.get_media_preference(user_id)
-
-    if not format_template:
-        return await message.reply_text("Please set an auto rename format first using /autorename")
-
-    file_queue.append(message)
-
-    if len(file_queue) >= MAX_FILES_PER_BATCH:
-        await process_file_batch(client)
-
-
 async def process_file_batch(client):
-    for _ in range(min(MAX_FILES_PER_BATCH, len(file_queue))):
-        message = file_queue.popleft()
-        await process_file(client, message)
+    while file_queue:
+        batch_size = min(MAX_FILES_PER_BATCH, len(file_queue))
+        batch_messages = [file_queue.popleft() for _ in range(batch_size)]
+
+        for message in batch_messages:
+            await process_file(client, message)
+
+    await client.send_message(message.chat.id, "Renaming process for all files is complete. Thanks for using me!\n\n For Sequence Files You Can Use My Love Rin: @RinNohara_xBot")
 
 
 async def process_file(client, message):
@@ -159,9 +133,9 @@ async def process_file(client, message):
     renaming_operations[file_id] = datetime.now()
 
     episode_number = extract_episode_number(file_name)
-    
+
     print(f"Extracted Episode Number: {episode_number}")
-    
+
     if episode_number:
         placeholders = ["episode", "Episode", "EPISODE", "{episode}"]
         for placeholder in placeholders:
@@ -256,10 +230,9 @@ async def process_file(client, message):
             del renaming_operations[file_id]
             return await upload_msg.edit(f"Error: {e}")
 
-        await download_msg.delete() 
+        await download_msg.delete()
         os.remove(file_path)
         if ph_path:
             os.remove(ph_path)
-            
-        del renaming_operations[file_id]
 
+        del renaming_operations[file_id]
