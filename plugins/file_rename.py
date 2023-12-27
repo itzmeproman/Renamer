@@ -13,8 +13,10 @@ from helper.database import db
 import os
 import time
 import re
+from collections import deque
 
 renaming_operations = {}
+file_queue = deque()  # Queue to store files for processing
 
 pattern1 = re.compile(r'S(\d+)(?:E|EP)(\d+)')
 pattern2 = re.compile(r'S(\d+)\s*(?:E|EP|-\s*EP)(\d+)')
@@ -112,6 +114,26 @@ async def auto_rename_files(client, message):
 
     if not format_template:
         return await message.reply_text("Please set an auto rename format first using /autorename")
+
+    if len(file_queue) >= 5:
+        return await message.reply_text("You have reached the maximum queue limit. Please wait for processing to complete.")
+
+    file_queue.append(message)
+
+
+async def process_queue(client):
+    while True:
+        if file_queue:
+            message = file_queue.popleft()
+            await process_file(client, message)
+        else:
+            await asyncio.sleep(5)  # Adjust the sleep duration as needed
+
+
+async def process_file(client, message):
+    user_id = message.from_user.id
+    format_template = await db.get_format_template(user_id)
+    media_preference = await db.get_media_preference(user_id)
 
     if message.document:
         file_id = message.document.file_id
@@ -242,3 +264,6 @@ async def auto_rename_files(client, message):
             os.remove(ph_path)
             
         del renaming_operations[file_id]
+
+
+asyncio.create_task(process_queue(client))
