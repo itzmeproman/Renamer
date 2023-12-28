@@ -47,8 +47,7 @@ async def cb_handler(client, query: CallbackQuery):
             ])
         )
     elif data == "about":
-        user_thumbnail = await db.get_thumbnail(user_id)
-        media = InputMediaPhoto(user_thumbnail) if user_thumbnail else InputMediaVideo(Config.START_PIC)
+        media = InputMediaVideo(Config.START_PIC)
 
         await query.message.edit_media(
             media=media,
@@ -102,7 +101,7 @@ async def cb_handler(client, query: CallbackQuery):
                 media=InputMediaPhoto(user_thumbnail),
             )
         else:
-            await query.message.edit_text(text=Txt.THUMB_NOT_AVAILABLE, reply_markup=InlineKeyboardMarkup([
+            await query.message.edit_text(text=Txt.THUMB_TXT, reply_markup=InlineKeyboardMarkup([
                 [
                     InlineKeyboardButton("Cʟᴏꜱᴇ", callback_data="close"),
                     InlineKeyboardButton("Bᴀᴄᴋ", callback_data="about"),
