@@ -6,7 +6,7 @@ class Config(object):
     # pyro client config
     API_ID    = os.environ.get("API_ID", "22418774")
     API_HASH  = os.environ.get("API_HASH", "d8c8dab274f9a811814a6a96d044028e")
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "6451712184:AAFsyIc7pE_X3HIDjzbxWv7Kzv2KkzAHZo8") 
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "6451712184:AAEzGehGFOZmov8oZSvtB1xgOEsb4IXUJdw") 
 
     # database config
     DB_NAME = os.environ.get("DB_NAME","obi")     
@@ -45,13 +45,12 @@ Tᴏ sᴇᴇ ᴍʏ ғᴜɴᴄᴛɪᴏɴs, ᴜsᴇ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ʙ�
     
     ABOUT_TXT = f"""<b>╭───────────⍟
 ├🤖 My name: <a href=http://t.me/UchihaObito_xBot>Uᴄʜɪʜᴀ Oʙɪᴛᴏ</a>
-├🖥️ Developers: <a href=https://t.me/BIackHatDev>BʟᴀᴄᴋHᴀᴛDᴇᴠ</a> 
 ├📕 Library: <a href=https://github.com/pyrogram>Pyʀᴏɢʀᴀᴍ</a>
 ├✏️ Language: <a href=https://www.python.org>Pyᴛʜᴏɴ3</a>
 ├💾 Data Base: <a href=https://cloud.mongodb.com>Mᴏɴɢᴏ DB</a>
 ├📊 Build Version: `OBI V1.7.0`
 ├🔗 GitHub: <a href=https://github.com/illuminati-Dev>GitHub</a>
-├📧 Contact: <a href=https://telegram.me/>Soon</a>
+├📧 Contact: <a href=https://telegram.me/The_NanamiiKento>N A N A M I</a>
 ╰───────────────⍟ 
 """
 
