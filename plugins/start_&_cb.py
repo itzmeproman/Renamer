@@ -109,6 +109,13 @@ async def cb_handler(client, query: CallbackQuery):
             ]))
         await query.message.edit_caption(
             caption=Txt.THUMB_TXT,
+            reply_markup=InlineKeyboardMarkup([
+                [
+                    InlineKeyboardButton("Cʟᴏꜱᴇ", callback_data="close"),
+                    InlineKeyboardButton("Bᴀᴄᴋ", callback_data="about"),
+                ]
+            ]
+                                             )
         )
     elif data == "close":
         try:
