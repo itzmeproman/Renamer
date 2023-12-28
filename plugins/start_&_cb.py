@@ -9,14 +9,14 @@ async def start(client, message):
     await db.add_user(client, message)
     button = InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("Commands", callback_data='commands')
+            InlineKeyboardButton("Cᴏᴍᴍᴀɴᴅs", callback_data='commands')
         ],
         [
-            InlineKeyboardButton('Updates', url='https://t.me/UchihaPoliceUpdates'),
-            InlineKeyboardButton('Support', url='https://t.me/UchihaPolice_Support')
+            InlineKeyboardButton('Uᴘᴅᴀᴛᴇs', url='https://t.me/UchihaPoliceUpdates'),
+            InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ', url='https://t.me/UchihaPolice_Support')
         ],
         [
-            InlineKeyboardButton('Help', callback_data='about')
+            InlineKeyboardButton('Hᴇʟᴘ', callback_data='about')
         ]
     ])
     if Config.START_PIC:
@@ -35,7 +35,7 @@ async def cb_handler(client, query: CallbackQuery):
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([
                 [
-                    InlineKeyboardButton("𝖢𝗈𝗆𝗆𝖺𝗇𝖽𝗌", callback_data='commands')
+                    InlineKeyboardButton("Cᴏᴍᴍᴀɴᴅs", callback_data='commands')
                 ],
                 [
                     InlineKeyboardButton('Uᴩᴅᴀᴛᴇꜱ', url='https://t.me/UchihaPoliceUpdates'),
@@ -76,7 +76,7 @@ async def cb_handler(client, query: CallbackQuery):
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([
                 [
-                    InlineKeyboardButton("Bot", url='')
+                    InlineKeyboardButton("Rɪɴ Nᴏʜᴀʀᴀ", url='https://t.me/RinNohara_xBot')
                 ],
                 [
                     InlineKeyboardButton("Cʟᴏꜱᴇ", callback_data="close"),
