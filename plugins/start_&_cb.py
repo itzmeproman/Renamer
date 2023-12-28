@@ -35,7 +35,7 @@ async def cb_handler(client, query: CallbackQuery):
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([
                 [
-                    InlineKeyboardButton("⚡ 𝖢𝗈𝗆𝗆𝖺𝗇𝖽𝗌 ⚡", callback_data='commands')
+                    InlineKeyboardButton("𝖢𝗈𝗆𝗆𝖺𝗇𝖽𝗌", callback_data='commands')
                 ],
                 [
                     InlineKeyboardButton('Uᴩᴅᴀᴛᴇꜱ', url='https://t.me/UchihaPoliceUpdates'),
@@ -60,7 +60,7 @@ async def cb_handler(client, query: CallbackQuery):
                 ],
                 [
                     InlineKeyboardButton('Tʜᴜᴍʙɴᴀɪʟ', callback_data='thumbnail'),
-                    InlineKeyboardButton('Sᴇǫᴜᴇɴᴄᴇ', url='https://t.me/Soon')
+                    InlineKeyboardButton('Sᴇǫᴜᴇɴᴄᴇ', callback_data='sequence')
                 ],
                 [
                     InlineKeyboardButton('Aʙᴏᴜᴛ', callback_data='about')
@@ -70,6 +70,21 @@ async def cb_handler(client, query: CallbackQuery):
                 ]
             ])
         )
+    elif data == "sequence":
+        await query.message.edit_text(
+            text=Txt.SEQUENCE_TXT,
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup([
+                [
+                    InlineKeyboardButton("Bot", url='')
+                ],
+                [
+                    InlineKeyboardButton("Cʟᴏꜱᴇ", callback_data="close"),
+                    InlineKeyboardButton("Bᴀᴄᴋ", callback_data="start")
+                ]
+            ])
+        )
+
     elif data == "commands":
         await query.message.edit_text(
             text=Txt.COMMANDS_TXT,
