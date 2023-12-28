@@ -35,9 +35,9 @@ SᴇQᴜᴇɴᴄᴇ Bᴏᴛ: @RinNohara_xBot
     
     """
         
-    START_TXT = """Hello {}
-I'm **Obito Uchiha**, an autorename bot that renames anime files to the format you set."
-To see my functions, use the buttons below."""
+    START_TXT = """Hᴇʟʟᴏ {}
+I'ᴍ **Oʙɪᴛᴏ Uᴄʜɪʜᴀ**, ᴀɴ ᴀᴜᴛᴏʀᴇɴᴀᴍᴇ ʙᴏᴛ ᴛʜᴀᴛ ʀᴇɴᴀᴍᴇs ᴀɴɪᴍᴇ ғɪʟᴇs ᴛᴏ ᴛʜᴇ ғᴏʀᴍᴀᴛ ʏᴏᴜ sᴇᴛ."
+Tᴏ sᴇᴇ ᴍʏ ғᴜɴᴄᴛɪᴏɴs, ᴜsᴇ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ʙᴇʟᴏᴡ."""
     
     FILE_NAME_TXT = """
     <u><b>SETUP AUTO RENAME FORMAT</b></u>\n\nUse These Keywords To Setup Custom File Name\n\n➝ episode :- to replace episode number\n➝ quality :- to replace video resolution\n\n‣ <b>Example :</b> /autorename [AL] High Card S1 - Eepisode [quality] Sub @Anime_Locus.mkv\n\n‣ <b>Your Current Rename Format :</b> {format_template}
