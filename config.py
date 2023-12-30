@@ -15,7 +15,7 @@ class Config(object):
     # other configs
     BOT_UPTIME  = time.time()
     START_PIC   = os.environ.get("START_PIC", "https://graph.org/file/a39c43ccf6c454d30eaec.mp4")
-    ADMIN       = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '6265459491 6299128233').split()]
+    ADMIN       = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '6299128233').split()]
     FORCE_SUB   = os.environ.get("FORCE_SUB", "UchihaPoliceUpdates") 
     LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002008965715"))
 
