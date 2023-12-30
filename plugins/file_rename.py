@@ -15,8 +15,12 @@ import time
 import re
 from collections import deque
 
+# Initialize user_queues and user_pending dictionaries
+user_queues = {}
+user_pending = {}
+
 renaming_operations = {}
-file_queue = deque()  
+file_queue = deque()
 MAX_FILES_PER_BATCH = 5
 
 pattern1 = re.compile(r'S(\d+)(?:E|EP)(\d+)')
@@ -72,24 +76,6 @@ def extract_episode_number(filename):
     if match:
         return match.group(2)
 
-    match = re.search(pattern3, filename)
-    if match:
-        return match.group(1)
-
-    match = re.search(pattern3_2, filename)
-    if match:
-        return match.group(1)
-
-    match = re.search(pattern4, filename)
-    if match:
-        return match.group(2)
-
-    match = re.search(patternX, filename)
-    if match:
-        return match.group(1)
-
-    return None
-
 
 @Client.on_message(filters.private & filters.command("autorename"))
 async def auto_rename_command(client, message):
@@ -107,28 +93,40 @@ async def set_media_command(client, message):
     await message.reply_text(f"Media preference set to: {media_type}")
 
 
-@Client.on_message(filters.private & (filters.document | filters.video | filters.audio))
-async def auto_rename_files(client, message):
-    user_id = message.from_user.id
-    format_template = await db.get_format_template(user_id)
-    media_preference = await db.get_media_preference(user_id)
-
-    if not format_template:
-        return await message.reply_text("Please set an auto rename format first using /autorename")
-
-    file_queue.append(message)
-
-    if len(file_queue) >= MAX_FILES_PER_BATCH:
-        await process_file_batch(client)
+async def on_task_complete(id):
+    ok = data_check(id)
+    user_queues[id].popleft()
+    await process_queue(id)
 
 
-async def process_file_batch(client):
-    for _ in range(min(MAX_FILES_PER_BATCH, len(file_queue))):
-        message = file_queue.popleft()
-        await process_file(client, message)
+def data_check(id):
+    for i in user_queues[id]:
+        if id == i.from_user.id:
+            return i
 
 
-async def process_file(client, message):
+async def add_task(message, user_id):
+    user_queue = user_queues[user_id]
+    user_pending_queue = user_pending[user_id]
+
+    # Enforce the limit of 4 tasks in the queue per user
+    if len(user_queue) < 4:
+        user_queue.append(message)
+        await process_queue(user_id)
+    else:
+        user_pending_queue.append(message)
+        await message.reply("Your queue is full. Task added to pending list.")
+
+
+async def process_queue(user_id):
+    user_queue = user_queues[user_id]
+
+    if user_queue:
+        message = user_queue.popleft()
+        await process_file(message)
+
+
+async def process_file(message):
     user_id = message.from_user.id
     format_template = await db.get_format_template(user_id)
     media_preference = await db.get_media_preference(user_id)
@@ -159,9 +157,9 @@ async def process_file(client, message):
     renaming_operations[file_id] = datetime.now()
 
     episode_number = extract_episode_number(file_name)
-    
+
     print(f"Extracted Episode Number: {episode_number}")
-    
+
     if episode_number:
         placeholders = ["episode", "Episode", "EPISODE", "{episode}"]
         for placeholder in placeholders:
@@ -185,7 +183,8 @@ async def process_file(client, message):
 
         download_msg = await message.reply_text(text="Trying to download...")
         try:
-            path = await client.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram, progress_args=("Download Started....", download_msg, time.time()))
+            path = await client.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram,
+                                                progress_args=("Download Started....", download_msg, time.time()))
         except Exception as e:
             del renaming_operations[file_id]
             return await download_msg.edit(e)
@@ -204,7 +203,8 @@ async def process_file(client, message):
         c_caption = await db.get_caption(message.chat.id)
         c_thumb = await db.get_thumbnail(message.chat.id)
 
-        caption = c_caption.format(filename=new_file_name, filesize=humanbytes(message.document.file_size), duration=convert(duration)) if c_caption else f"**{new_file_name}**"
+        caption = c_caption.format(filename=new_file_name, filesize=humanbytes(message.document.file_size),
+                                    duration=convert(duration)) if c_caption else f"**{new_file_name}**"
 
         if c_thumb:
             ph_path = await client.download_media(c_thumb)
@@ -256,9 +256,9 @@ async def process_file(client, message):
             del renaming_operations[file_id]
             return await upload_msg.edit(f"Error: {e}")
 
-        await download_msg.delete() 
+        await download_msg.delete()
         os.remove(file_path)
         if ph_path:
             os.remove(ph_path)
-            
+
         del renaming_operations[file_id]
