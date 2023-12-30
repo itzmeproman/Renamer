@@ -14,6 +14,14 @@ import os
 import time
 import re
 from queue import Queue
+from helper.maindb import MaintenanceManager
+
+# Use the maintenance_manager instance
+maintenance_manager = MaintenanceManager()
+
+# Wrapper for commands affected by maintenance mode
+maintenance_check_wrapper = maintenance_manager.maintenance_mode_check
+
 
 # Create a queue for handling renaming operations
 renaming_queue = Queue()
@@ -115,6 +123,7 @@ def extract_episode_number(filename):
     return None
 
 @Client.on_message(filters.private & filters.command("autorename"))
+@maintenance_check_wrapper
 async def auto_rename_command(client, message):
     user_id = message.from_user.id
     format_template = message.text.split("/autorename", 1)[1].strip()
@@ -124,6 +133,7 @@ async def auto_rename_command(client, message):
     await message.reply_text("Auto rename format updated successfully!")
 
 @Client.on_message(filters.private & filters.command("setmedia"))
+@maintenance_check_wrapper
 async def set_media_command(client, message):
     user_id = message.from_user.id
     media_type = message.text.split("/setmedia", 1)[1].strip().lower()
@@ -134,6 +144,7 @@ async def set_media_command(client, message):
 
 # Inside the handler for file uploads
 @Client.on_message(filters.private & (filters.document | filters.video | filters.audio))
+@maintenance_check_wrapper
 async def auto_rename_files(client, message):
     user_id = message.from_user.id
     format_template = await db.get_format_template(user_id)
