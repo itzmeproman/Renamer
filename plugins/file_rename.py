@@ -1,6 +1,6 @@
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
-from pyrogram.types import InputMediaDocument
+from pyrogram.types import Message
 from PIL import Image
 from datetime import datetime
 
@@ -15,21 +15,11 @@ import time
 import re
 from collections import deque
 
-# Initialize user_queues and user_pending dictionaries
-user_queues = {}
-user_pending = {}
-
 renaming_operations = {}
 file_queue = deque()
-MAX_FILES_PER_BATCH = 5
 
-pattern1 = re.compile(r'S(\d+)(?:E|EP)(\d+)')
-pattern2 = re.compile(r'S(\d+)\s*(?:E|EP|-\s*EP)(\d+)')
-pattern3 = re.compile(r'(?:[([<{]?\s*(?:E|EP)\s*(\d+)\s*[)\]>}]?)')
-pattern3_2 = re.compile(r'(?:\s*-\s*(\d+)\s*)')
-pattern4 = re.compile(r'S(\d+)[^\d]*(\d+)', re.IGNORECASE)
-patternX = re.compile(r'(\d+)')
 
+# Quality Patterns
 pattern5 = re.compile(r'\b(?:.*?(\d{3,4}[^\dp]*p).*?|.*?(\d{3,4}p))\b', re.IGNORECASE)
 pattern6 = re.compile(r'[([<{]?\s*4k\s*[)\]>}]?', re.IGNORECASE)
 pattern7 = re.compile(r'[([<{]?\s*2k\s*[)\]>}]?', re.IGNORECASE)
@@ -41,8 +31,7 @@ pattern10 = re.compile(r'[([<{]?\s*4kx265\s*[)\]>}]?', re.IGNORECASE)
 def extract_quality(filename):
     match5 = re.search(pattern5, filename)
     if match5:
-        quality5 = match5.group(1) or match5.group(2)
-        return quality5
+        return match5.group(1) or match5.group(2)
 
     match6 = re.search(pattern6, filename)
     if match6:
@@ -68,6 +57,13 @@ def extract_quality(filename):
 
 
 def extract_episode_number(filename):
+    pattern1 = re.compile(r'S(\d+)(?:E|EP)(\d+)')
+    pattern2 = re.compile(r'S(\d+)\s*(?:E|EP|-\s*EP)(\d+)')
+    pattern3 = re.compile(r'(?:[([<{]?\s*(?:E|EP)\s*(\d+)\s*[)\]>}]?)')
+    pattern3_2 = re.compile(r'(?:\s*-\s*(\d+)\s*)')
+    pattern4 = re.compile(r'S(\d+)[^\d]*(\d+)', re.IGNORECASE)
+    patternX = re.compile(r'(\d+)')
+
     match = re.search(pattern1, filename)
     if match:
         return match.group(2)
@@ -76,61 +72,49 @@ def extract_episode_number(filename):
     if match:
         return match.group(2)
 
+    match = re.search(pattern3, filename)
+    if match:
+        return match.group(1)
 
-@Client.on_message(filters.private & filters.command("autorename"))
-async def auto_rename_command(client, message):
-    user_id = message.from_user.id
-    try:
-        format_template = message.text.split("/autorename", 1)[1].strip()
-    except IndexError:
-        return await message.reply_text("Please provide an auto rename format after /autorename")
+    match = re.search(pattern3_2, filename)
+    if match:
+        return match.group(1)
 
-    await db.set_format_template(user_id, format_template)
-    await message.reply_text("Auto rename format updated successfully!")
+    match = re.search(pattern4, filename)
+    if match:
+        return match.group(2)
 
+    match = re.search(patternX, filename)
+    if match:
+        return match.group(1)
 
-@Client.on_message(filters.private & filters.command("setmedia"))
-async def set_media_command(client, message):
-    user_id = message.from_user.id
-    media_type = message.text.split("/setmedia", 1)[1].strip().lower()
-    await db.set_media_preference(user_id, media_type)
-    await message.reply_text(f"Media preference set to: {media_type}")
+    return None
 
 
-async def on_task_complete(id):
-    ok = data_check(id)
-    user_queues[id].popleft()
-    await process_queue(id)
+async def on_task_complete(client, message_id):
+    ok = data_check(message_id)
+    file_queue.popleft()
+    await process_queue(client, message_id)
 
 
-def data_check(id):
-    for i in user_queues[id]:
-        if id == i.from_user.id:
+def data_check(message_id):
+    for i in file_queue:
+        if message_id == i.message_id:
             return i
 
 
 async def add_task(message, user_id):
-    user_queue = user_queues[user_id]
-    user_pending_queue = user_pending[user_id]
-
-    # Enforce the limit of 4 tasks in the queue per user
-    if len(user_queue) < 4:
-        user_queue.append(message)
-        await process_queue(user_id)
-    else:
-        user_pending_queue.append(message)
-        await message.reply("Your queue is full. Task added to pending list.")
+    file_queue.append(message)
+    await process_queue(message.chat.id)
 
 
-async def process_queue(user_id):
-    user_queue = user_queues[user_id]
-
-    if user_queue:
-        message = user_queue.popleft()
-        await process_file(message)
+async def process_queue(client, chat_id):
+    if file_queue:
+        message = file_queue.popleft()
+        await process_file(client, message, chat_id)
 
 
-async def process_file(message):
+async def process_file(client, message, chat_id):
     user_id = message.from_user.id
     format_template = await db.get_format_template(user_id)
     media_preference = await db.get_media_preference(user_id)
@@ -161,7 +145,6 @@ async def process_file(message):
     renaming_operations[file_id] = datetime.now()
 
     episode_number = extract_episode_number(file_name)
-
     print(f"Extracted Episode Number: {episode_number}")
 
     if episode_number:
@@ -174,7 +157,7 @@ async def process_file(message):
             if quality_placeholder in format_template:
                 extracted_qualities = extract_quality(file_name)
                 if extracted_qualities == "Unknown":
-                    await message.reply_text("I wasn't able to extract the quality properly. Renaming as 'Unknown'...")
+                    await message.reply_text("Unable to extract quality. Renaming as 'Unknown'...")
                     del renaming_operations[file_id]
                     return
 
@@ -183,12 +166,12 @@ async def process_file(message):
         _, file_extension = os.path.splitext(file_name)
         new_file_name = f"{format_template}{file_extension}"
         file_path = f"downloads/{new_file_name}"
-        file = message
 
         download_msg = await message.reply_text(text="Trying to download...")
         try:
-            path = await client.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram,
-                                                progress_args=("Download Started....", download_msg, time.time()))
+            path = await client.download_media(message=message, file_name=file_path,
+                                               progress=progress_for_pyrogram,
+                                               progress_args=("Download Started....", download_msg, time.time()))
         except Exception as e:
             del renaming_operations[file_id]
             return await download_msg.edit(e)
@@ -226,7 +209,7 @@ async def process_file(message):
             type = media_type
             if type == "document":
                 await client.send_document(
-                    message.chat.id,
+                    chat_id,
                     document=file_path,
                     thumb=ph_path,
                     caption=caption,
@@ -235,7 +218,7 @@ async def process_file(message):
                 )
             elif type == "video":
                 await client.send_video(
-                    message.chat.id,
+                    chat_id,
                     video=file_path,
                     caption=caption,
                     thumb=ph_path,
@@ -245,7 +228,7 @@ async def process_file(message):
                 )
             elif type == "audio":
                 await client.send_audio(
-                    message.chat.id,
+                    chat_id,
                     audio=file_path,
                     caption=caption,
                     thumb=ph_path,
@@ -266,4 +249,49 @@ async def process_file(message):
             os.remove(ph_path)
 
         del renaming_operations[file_id]
+
+
+@Client.on_message(filters.private & filters.command("autorename"))
+async def auto_rename_command(client, message):
+    user_id = message.from_user.id
+    format_template = message.text.split("/autorename", 1)[1].strip()
+    await db.set_format_template(user_id, format_template)
+    await message.reply_text("Auto rename format updated successfully!")
+
+
+@Client.on_message(filters.private & filters.command("setmedia"))
+async def set_media_command(client, message):
+    user_id = message.from_user.id
+    media_type = message.text.split("/setmedia", 1)[1].strip().lower()
+    await db.set_media_preference(user_id, media_type)
+    await message.reply_text(f"Media preference set to: {media_type}")
+
+
+@Client.on_message(filters.private & (filters.document | filters.video | filters.audio))
+async def handle_file(client, message):
+    user_id = message.from_user.id
+    await add_task(message, user_id)
+
+
+@Client.on_message(filters.private & filters.command("queue"))
+async def queue_command(client, message):
+    user_id = message.from_user.id
+    queue_size = len(file_queue)
+    await message.reply_text(f"Current queue size: {queue_size}")
+
+
+@Client.on_message(filters.private & filters.command("processqueue"))
+async def process_queue_command(client, message):
+    user_id = message.from_user.id
+    await process_queue(client, user_id)
+
+
+@Client.on_message(filters.private & filters.command("cancelqueue"))
+async def cancel_queue_command(client, message):
+    global file_queue
+    user_id = message.from_user.id
+    file_queue = deque()
+    await message.reply_text("Queue cleared successfully!")
+
+
 
