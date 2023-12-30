@@ -2,8 +2,16 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ForceReply, CallbackQuery, Message, InputMediaPhoto, InputMediaVideo
 from helper.database import db
 from config import Config, Txt
+from helper.maindb import MaintenanceManager
+
+# Use the maintenance_manager instance
+maintenance_manager = MaintenanceManager()
+
+# Wrapper for commands affected by maintenance mode
+maintenance_check_wrapper = maintenance_manager.maintenance_mode_check
 
 @Client.on_message(filters.private & filters.command("start"))
+@maintenance_check_wrapper
 async def start(client, message):
     user = message.from_user
     await db.add_user(client, message)
