@@ -1,5 +1,5 @@
 # main_bot.py
-from config import ADMINS
+from config import ADMIN
 from pyrogram import Client as app, filters
 from helper.maindb import MaintenanceManager
 
@@ -14,7 +14,7 @@ maintenance_check_wrapper = maintenance_manager.maintenance_mode_check
 async def maintenance_command(client, message):
     user_id = message.from_user.id
 
-    if user_id == ADMINS:  # Replace YOUR_ADMIN_USER_ID with the actual admin user ID
+    if user_id == ADMIN:  # Replace YOUR_ADMIN_USER_ID with the actual admin user ID
         action = message.text.split("/maintenance", 1)[1].strip().lower()
 
         if action == "on":
