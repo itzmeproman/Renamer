@@ -1,5 +1,4 @@
 # main_bot.py
-from config import Config
 from pyrogram import Client as app, filters
 from helper.maindb import MaintenanceManager
 
@@ -9,12 +8,13 @@ maintenance_manager = MaintenanceManager()
 # Wrapper for commands affected by maintenance mode
 maintenance_check_wrapper = maintenance_manager.maintenance_mode_check
 
+ADMIN = 6299128233
 
 @app.on_message(filters.private & filters.command("maintenance"))
 async def maintenance_command(client, message):
     user_id = message.from_user.id
 
-    if user_id == Config.ADMIN:  # Replace YOUR_ADMIN_USER_ID with the actual admin user ID
+    if user_id == ADMIN:  # Replace YOUR_ADMIN_USER_ID with the actual admin user ID
         action = message.text.split("/maintenance", 1)[1].strip().lower()
 
         if action == "on":
