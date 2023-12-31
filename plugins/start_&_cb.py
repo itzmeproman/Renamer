@@ -1,4 +1,4 @@
-from pyrogram import Client, filters
+from pyrogram import Client as app, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto, InputMediaVideo, CallbackQuery
 
 from helper.database import db
@@ -8,7 +8,7 @@ from helper.maindb import MaintenanceManager
 maintenance_manager = MaintenanceManager()
 maintenance_check_wrapper = maintenance_manager.maintenance_mode_check
 
-@Client.on_message(filters.private & filters.command("start"))
+@app.on_message(filters.private & filters.command("start"))
 @maintenance_check_wrapper
 async def start(client, message):
     user = message.from_user
@@ -26,7 +26,7 @@ async def start(client, message):
     else:
         await message.reply_text(text=Txt.START_TXT.format(user.mention), reply_markup=button, disable_web_page_preview=True)
 
-@Client.on_callback_query()
+@app.on_callback_query()
 async def cb_handler(client, query: CallbackQuery):
     data = query.data
     user_id = query.from_user.id
