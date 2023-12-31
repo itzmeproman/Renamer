@@ -9,10 +9,10 @@ maintenance_manager = MaintenanceManager()
 maintenance_check_wrapper = maintenance_manager.maintenance_mode_check
 
 @app.on_message(filters.private & filters.command("start"))
-@maintenance_check_wrapper
 async def start(client, message):
     user = message.from_user
     await db.add_user(client, message)
+    await maintenance_check_wrapper()
     
     button = InlineKeyboardMarkup([
         [InlineKeyboardButton("Commands", callback_data='commands')],
@@ -20,7 +20,7 @@ async def start(client, message):
          InlineKeyboardButton('Support', url='https://t.me/UchihaPolice_Support')],
         [InlineKeyboardButton('Help', callback_data='about')]
     ])
-    
+
     if Config.START_PIC:
         await message.reply_video(Config.START_PIC, caption=Txt.START_TXT.format(user.mention), reply_markup=button)
     else:
@@ -106,6 +106,7 @@ async def cb_handler(client, query: CallbackQuery):
             await query.message.delete()
             await query.message.reply_to_message.delete()
             await query.message.continue_propagation()
-        except:
+        except Exception as e:
+            print(f"Error deleting message: {e}")
             await query.message.delete()
             await query.message.continue_propagation()
