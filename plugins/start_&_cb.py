@@ -12,7 +12,6 @@ maintenance_check_wrapper = maintenance_manager.maintenance_mode_check
 async def start(client, message):
     user = message.from_user
     await db.add_user(client, message)
-    await maintenance_check_wrapper()
     
     button = InlineKeyboardMarkup([
         [InlineKeyboardButton("Commands", callback_data='commands')],
