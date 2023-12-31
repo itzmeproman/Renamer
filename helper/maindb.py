@@ -1,4 +1,4 @@
-# maindb.py
+# maintenance.py
 
 import os
 
@@ -25,5 +25,3 @@ class MaintenanceManager:
                 return
             return func(client, message, *args, **kwargs)
         return wrapper
-      
-maintenance_manager = MaintenanceManager()
