@@ -12,6 +12,10 @@ import time
 import re
 
 renaming_operations = {}
+file_count_limit = 100  
+sleep_duration = 30 * 60 
+
+user_file_counts = {}
 
 pattern1 = re.compile(r'S(\d+)(?:E|EP)(\d+)')
 pattern2 = re.compile(r'S(\d+)\s*(?:E|EP|-\s*EP)(\d+)')
@@ -95,9 +99,15 @@ async def set_media_command(client, message):
     await db.set_media_preference(user_id, media_type)
     await message.reply_text(f"Media preference set to: {media_type}")
 
-@Client.on_message(filters.private & (filters.document | filters.video | filters.audio))
-async def auto_rename_files(client, message):
-    user_id = message.from_user.id
+    if user_id in user_file_counts:
+        user_file_counts[user_id] += 1
+        if user_file_counts[user_id] > file_count_limit:
+            await message.reply_text(f"You have reached the file limit. Please wait for {sleep_duration // 60} minutes before sending more files.")
+            await asyncio.sleep(sleep_duration)
+            user_file_counts[user_id] = 0
+    else:
+        user_file_counts[user_id] = 1
+        
     format_template = await db.get_format_template(user_id)
     media_preference = await db.get_media_preference(user_id)
 
