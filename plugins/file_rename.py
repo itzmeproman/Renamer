@@ -12,7 +12,7 @@ import time
 import re
 
 renaming_operations = {}
-file_count_limit = 10
+file_count_limit = 100
 sleep_duration = 30 * 60 
 
 user_file_counts = {}
