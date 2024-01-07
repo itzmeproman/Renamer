@@ -99,6 +99,9 @@ async def set_media_command(client, message):
     await db.set_media_preference(user_id, media_type)
     await message.reply_text(f"Media preference set to: {media_type}")
 
+@Client.on_message(filters.private & (filters.document | filters.video | filters.audio))
+async def auto_rename_files(client, message):
+    user_id = message.from_user.id
     if user_id in user_file_counts:
         user_file_counts[user_id] += 1
         if user_file_counts[user_id] > file_count_limit:
