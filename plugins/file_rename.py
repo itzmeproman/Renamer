@@ -163,6 +163,10 @@ async def auto_rename_files(client, message):
 
                 format_template = format_template.replace(quality_placeholder, "".join(extracted_qualities))
 
+        title = re.sub(r'[^a-zA-Z0-9\s]', '', os.path.splitext(file_name)[0])  # Remove special characters from title
+
+        format_template = format_template.replace("{title}", title)
+
         _, file_extension = os.path.splitext(file_name)
         new_file_name = f"{format_template}{file_extension}"
         file_path = f"downloads/{new_file_name}"
@@ -247,3 +251,4 @@ async def auto_rename_files(client, message):
             os.remove(ph_path)
 
         del renaming_operations[file_id]
+    
