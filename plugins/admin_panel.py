@@ -33,7 +33,7 @@ logger.setLevel(logging.INFO)
 
 @Client.on_message(filters.private & filters.command("tutorial"))
 async def tutioral_bot(b, m):
-    await m.reply_text("For sasti god level assistance message @Trippy_xt")
+    await m.reply_text("just set /autorename format dude")
 
 @Client.on_message(filters.command(["stats", "status"]) & filters.user(Config.ADMIN))
 async def get_stats(bot, message):
