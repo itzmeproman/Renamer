@@ -14,8 +14,8 @@ class Config(object):
  
     # other configs
     BOT_UPTIME  = time.time()
-    START_PIC   = os.environ.get("START_PIC", "https://graph.org/file/a39c43ccf6c454d30eaec.mp4")
-    ADMIN       = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '6299128233').split()]
+    START_PIC   = os.environ.get("START_PIC", "https://telegra.ph/file/9a5571139e4a652435bd8.jpg")
+    ADMIN       = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '760067286').split()]
     FORCE_SUB   = os.environ.get("FORCE_SUB", "UchihaPoliceUpdates") 
     LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002008965715"))
 
@@ -31,26 +31,24 @@ class Txt(object):
 2. Sᴇɴᴅ ᴛʜᴇ ꜰɪʟᴇs ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ sᴇQᴜᴇɴᴄᴇ ᴏɴᴇ ʙʏ ᴏɴᴇ.
 3. Wʜᴇɴ ʏᴏᴜ'ʀᴇ ᴅᴏɴᴇ, Usᴇ /endsequence ᴛᴏ ꜰɪɴɪsʜ ᴀɴᴅ ɢᴇᴛ ᴛʜᴇ sᴇQᴜᴇɴᴄᴇᴅ ꜰɪʟᴇs.
 
-SᴇQᴜᴇɴᴄᴇ Bᴏᴛ: @RinNohara_xBot
     
     """
         
-    START_TXT = """Hᴇʟʟᴏ {}
-I'ᴍ **Oʙɪᴛᴏ Uᴄʜɪʜᴀ**, ᴀɴ ᴀᴜᴛᴏʀᴇɴᴀᴍᴇ ʙᴏᴛ ᴛʜᴀᴛ ʀᴇɴᴀᴍᴇs ᴀɴɪᴍᴇ ғɪʟᴇs ᴛᴏ ᴛʜᴇ ғᴏʀᴍᴀᴛ ʏᴏᴜ sᴇᴛ."
-Tᴏ sᴇᴇ ᴍʏ ғᴜɴᴄᴛɪᴏɴs, ᴜsᴇ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ʙᴇʟᴏᴡ."""
+    START_TXT = """Hᴇʏ Tʜᴇʀᴇ {}!!
+Oʀᴇ Nᴏ Nᴀᴡᴀ **Eʀᴇɴ Yᴇᴀɢᴇʀ**, ᴀ ꜰᴀsᴛ ᴀᴜᴛᴏʀᴇɴᴀᴍᴇ ʙᴏᴛ ᴡʜᴏ's ɢᴏɴɴᴀ ᴍᴀᴋᴇ ʏᴏᴜʀ ꜰɪʟᴇs/ᴠɪᴅᴇᴏ ʀᴇɴᴀᴍɪɴɢ ᴘʀᴏᴄᴇss ʀᴇᴀʟ qᴜɪᴄᴋ ᴀɴᴅ ᴇᴀsʏ.
+
+ᴛᴏ ᴋɴᴏᴡ ᴡʜᴀᴛ I'ᴍ ᴄᴀᴘᴀʙʟᴇ ᴏꜰ ᴏᴛʜᴇʀ ᴛʜᴀɴ ᴍᴀss-ᴍᴀssᴀᴄʀᴇ, ʙᴇᴛᴛᴇʀ ᴜsᴇ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ʙᴇʟᴏᴡ.. 🕊️"""
     
     FILE_NAME_TXT = """
-    <u><b>SETUP AUTO RENAME FORMAT</b></u>\n\nUse These Keywords To Setup Custom File Name\n\n➝ episode :- to replace episode number\n➝ quality :- to replace video resolution\n\n‣ <b>Example :</b> /autorename [AL] High Card S1 - Eepisode [quality] Sub @Anime_Locus.mkv\n\n‣ <b>Your Current Rename Format :</b> {format_template}
+    <u><b>SETUP AUTO RENAME FORMAT</b></u>\n\nUse These Keywords To Setup Custom File Name\n\n➝ episode :- to replace episode number\n➝ quality :- to replace video resolution\n\n‣ <b>Example :</b> /autorename [CW] Attack on Titan S1 - episode [quality] [Dual] @Anime_Channel.mkv\n\n‣ <b>Your Current Rename Format :</b> {format_template}
     """
     
     ABOUT_TXT = f"""<b>╭───────────⍟
-├🤖 My name: <a href=http://t.me/UchihaObito_xBot>Uᴄʜɪʜᴀ Oʙɪᴛᴏ</a>
+├🤖 My name: <a href=http://t.me/Eren_AutoRenameBot>Eʀᴇɴ Yᴇᴀɢᴇʀ</a>
 ├📕 Library: <a href=https://github.com/pyrogram>Pyʀᴏɢʀᴀᴍ</a>
 ├✏️ Language: <a href=https://www.python.org>Pyᴛʜᴏɴ3</a>
 ├💾 Data Base: <a href=https://cloud.mongodb.com>Mᴏɴɢᴏ DB</a>
-├📊 Build Version: `OBI V1.7.0`
-├🔗 GitHub: <a href=https://github.com/illuminati-Dev>GitHub</a>
-├📧 Contact: <a href=https://telegram.me/The_NanamiiKento>N A N A M I</a>
+├📊 Build Version: `EREH V1.7.0`
 ╰───────────────⍟ 
 """
 
@@ -59,8 +57,7 @@ Tᴏ sᴇᴇ ᴍʏ ғᴜɴᴄᴛɪᴏɴs, ᴜsᴇ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ʙ�
 • /del_thumb to delete your old thumbnail.
 • /view_thumb to view your current thumbnail."""
 
-    PREMIUM_TXT = """Hm Soon
-    for now free use kr lo"""
+    PREMIUM_TXT = """Not Decided Yet"""
 
 #⚠️ Dᴏɴ'ᴛ Rᴇᴍᴏᴠᴇ Oᴜʀ Cʀᴇᴅɪᴛꜱ @ᴩyʀᴏ_ʙᴏᴛᴢ🙏🥲
     COMMANDS_TXT = """🌌 How To Set Thumbnail
@@ -78,7 +75,16 @@ Example: /set_caption 📕 File Name: {filename}
 ⏰ Duration: {duration}
 
 ✏️ How To Rename A File
-• Send any file and type the new file name and select the format [document, video, audio].    """
+• First set /autorename format then send your files. Eg: /autorename [S01-episode] Attack on Titan [quality] [Dual] @Anime_Channel.mkv
+
+‣ Available Variables
+» <code>episode</code>
+» <code>quality</code>
+» <code>season</code>
+
+🤔 Maybe more later...
+
+• Default Format Type Set to [document].mkv    """
 
     PROGRESS_BAR = """<b>\n
 ╭━━━━❰ᴘʀᴏɢʀᴇss ʙᴀʀ❱━➣
