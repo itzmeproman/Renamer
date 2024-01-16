@@ -50,7 +50,7 @@ async def cb_handler(client, query: CallbackQuery):
             reply_markup=InlineKeyboardMarkup([
                 [InlineKeyboardButton("Set Username Format", callback_data='file_names')],
                 [InlineKeyboardButton('Thumbnail', callback_data='thumbnail'),
-                 InlineKeyboardButton('Sequence', callback_data='sequence')],
+                 InlineKeyboardButton('Sequence cumming soon 🥵', callback_data='sequence')],
                 [InlineKeyboardButton('Home', callback_data='start')]
             ])
         )
