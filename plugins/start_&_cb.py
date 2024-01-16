@@ -15,8 +15,8 @@ async def start(client, message):
     
     button = InlineKeyboardMarkup([
         [InlineKeyboardButton("Commands", callback_data='commands')],
-        [InlineKeyboardButton('Updates', url='https://t.me/telegram'),
-         InlineKeyboardButton('Support', url='https://t.me/telegram')],
+        [InlineKeyboardButton('Updates', url='https://t.me/supernovanetwork'),
+         InlineKeyboardButton('Support', url='https://t.me/paradox_chatz_group')],
         [InlineKeyboardButton('Help', callback_data='about')]
     ])
 
@@ -36,8 +36,8 @@ async def cb_handler(client, query: CallbackQuery):
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([
                 [InlineKeyboardButton("Commands", callback_data='commands')],
-                [InlineKeyboardButton('Updates', url='https://t.me/telegram'),
-                 InlineKeyboardButton('Support', url='https://t.me/telegram')],
+                [InlineKeyboardButton('Updates', url='https://t.me/supernovanetwork'),
+                 InlineKeyboardButton('Support', url='https://t.me/paradox_chatz_group')],
                 [InlineKeyboardButton('Help', callback_data='about')]
             ])
         )
@@ -59,7 +59,7 @@ async def cb_handler(client, query: CallbackQuery):
             text=Txt.SEQUENCE_TXT,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("Tatakae", url='https://t.me/telegram')],
+                [InlineKeyboardButton("Owner", url='https://t.me/xenov7x)],
                 [InlineKeyboardButton("Close", callback_data="close"),
                  InlineKeyboardButton("Back", callback_data="start")]
             ])
