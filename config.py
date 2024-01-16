@@ -25,11 +25,7 @@ class Config(object):
 
 class Txt(object):
 
-    SEQUENCE_TXT = """ᴛʜᴇ ꜰɪʟᴇ sᴇQᴜᴇɴᴄɪɴɢ ʙᴏᴛ. ʜᴇʀᴇ's ʜᴏᴡ ᴛᴏ ᴜsᴇ:
-
-1. Usᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ /startsequence ᴛᴏ ʙᴇɢɪɴ ᴀ ꜰɪʟᴇ sᴇQᴜᴇɴᴄɪɴɢ ᴘʀᴏᴄᴇss.
-2. Sᴇɴᴅ ᴛʜᴇ ꜰɪʟᴇs ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ sᴇQᴜᴇɴᴄᴇ ᴏɴᴇ ʙʏ ᴏɴᴇ.
-3. Wʜᴇɴ ʏᴏᴜ'ʀᴇ ᴅᴏɴᴇ, Usᴇ /endsequence ᴛᴏ ꜰɪɴɪsʜ ᴀɴᴅ ɢᴇᴛ ᴛʜᴇ sᴇQᴜᴇɴᴄᴇᴅ ꜰɪʟᴇs.
+    SEQUENCE_TXT = """Sequence Bot will be added soon 😶‍🌫️.
 
     
     """
@@ -44,7 +40,7 @@ Oʀᴇ Nᴏ Nᴀᴡᴀ **Eʀᴇɴ Yᴇᴀɢᴇʀ**, ᴀ ꜰᴀsᴛ ᴀᴜᴛᴏ�
     """
     
     ABOUT_TXT = f"""<b>╭───────────⍟
-├🤖 My name: <a href=http://t.me/Eren_AutoRenameBot>Eʀᴇɴ Yᴇᴀɢᴇʀ</a>
+├🦥 Owner: <a href=http://t.me/Xenov7x>𝙓𝙚𝙣𝙤𝙫</a>
 ├📕 Library: <a href=https://github.com/pyrogram>Pyʀᴏɢʀᴀᴍ</a>
 ├✏️ Language: <a href=https://www.python.org>Pyᴛʜᴏɴ3</a>
 ├💾 Data Base: <a href=https://cloud.mongodb.com>Mᴏɴɢᴏ DB</a>
@@ -80,9 +76,6 @@ Example: /set_caption 📕 File Name: {filename}
 ‣ Available Variables
 » <code>episode</code>
 » <code>quality</code>
-» <code>season</code>
-
-🤔 Maybe more later...
 
 • Default Format Type Set to [document].mkv    """
 
