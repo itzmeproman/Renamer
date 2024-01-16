@@ -59,7 +59,7 @@ async def cb_handler(client, query: CallbackQuery):
             text=Txt.SEQUENCE_TXT,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("Owner", url='https://t.me/xenov7x)],
+                [InlineKeyboardButton("Owner", url='https://t.me/xenov7x')],
                 [InlineKeyboardButton("Close", callback_data="close"),
                  InlineKeyboardButton("Back", callback_data="start")]
             ])
