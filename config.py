@@ -6,7 +6,7 @@ class Config(object):
     # pyro client config
     API_ID    = os.environ.get("API_ID", "22418774")
     API_HASH  = os.environ.get("API_HASH", "d8c8dab274f9a811814a6a96d044028e")
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "") 
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "6715664137:AAGBBV2i_tpF3UiixI8hHDY4ArEUywfesHI") 
 
     # database config
     DB_NAME = os.environ.get("DB_NAME","obi")     
@@ -15,9 +15,9 @@ class Config(object):
     # other configs
     BOT_UPTIME  = time.time()
     START_PIC   = os.environ.get("START_PIC", "https://graph.org/file/a39c43ccf6c454d30eaec.mp4")
-    ADMIN       = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '6299128233').split()]
+    ADMIN       = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '1966867320').split()]
     FORCE_SUB   = os.environ.get("FORCE_SUB", "UchihaPoliceUpdates") 
-    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002008965715"))
+    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002020039437"))
 
     # wes response configuration     
     WEBHOOK = bool(os.environ.get("WEBHOOK", "True"))
