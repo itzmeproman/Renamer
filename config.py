@@ -22,6 +22,18 @@ class Config(object):
     # wes response configuration     
     WEBHOOK = bool(os.environ.get("WEBHOOK", "True"))
 
+
+class Txt(object):
+
+    SEQUENCE_TXT = """ᴛʜᴇ ꜰɪʟᴇ sᴇQᴜᴇɴᴄɪɴɢ ʙᴏᴛ. ʜᴇʀᴇ's ʜᴏᴡ ᴛᴏ ᴜsᴇ:
+
+1. Usᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ /startsequence ᴛᴏ ʙᴇɢɪɴ ᴀ ꜰɪʟᴇ sᴇQᴜᴇɴᴄɪɴɢ ᴘʀᴏᴄᴇss.
+2. Sᴇɴᴅ ᴛʜᴇ ꜰɪʟᴇs ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ sᴇQᴜᴇɴᴄᴇ ᴏɴᴇ ʙʏ ᴏɴᴇ.
+3. Wʜᴇɴ ʏᴏᴜ'ʀᴇ ᴅᴏɴᴇ, Usᴇ /endsequence ᴛᴏ ꜰɪɴɪsʜ ᴀɴᴅ ɢᴇᴛ ᴛʜᴇ sᴇQᴜᴇɴᴄᴇᴅ ꜰɪʟᴇs.
+
+SᴇQᴜᴇɴᴄᴇ Bᴏᴛ:
+    
+
 """
 START_TXT = """Hᴇʟʟᴏ {}
 I'ᴍ **Zenoiiii**, ᴀɴ ᴀᴜᴛᴏʀᴇɴᴀᴍᴇ ʙᴏᴛ ᴛʜᴀᴛ ʀᴇɴᴀᴍᴇs ᴀɴɪᴍᴇ ғɪʟᴇs ᴛᴏ ᴛʜᴇ ғᴏʀᴍᴀᴛ ʏᴏᴜ sᴇᴛ."
