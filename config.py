@@ -22,21 +22,9 @@ class Config(object):
     # wes response configuration     
     WEBHOOK = bool(os.environ.get("WEBHOOK", "True"))
 
-
-class Txt(object):
-
-    SEQUENCE_TXT = """ᴛʜᴇ ꜰɪʟᴇ sᴇQᴜᴇɴᴄɪɴɢ ʙᴏᴛ. ʜᴇʀᴇ's ʜᴏᴡ ᴛᴏ ᴜsᴇ:
-
-1. Usᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ /startsequence ᴛᴏ ʙᴇɢɪɴ ᴀ ꜰɪʟᴇ sᴇQᴜᴇɴᴄɪɴɢ ᴘʀᴏᴄᴇss.
-2. Sᴇɴᴅ ᴛʜᴇ ꜰɪʟᴇs ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ sᴇQᴜᴇɴᴄᴇ ᴏɴᴇ ʙʏ ᴏɴᴇ.
-3. Wʜᴇɴ ʏᴏᴜ'ʀᴇ ᴅᴏɴᴇ, Usᴇ /endsequence ᴛᴏ ꜰɪɴɪsʜ ᴀɴᴅ ɢᴇᴛ ᴛʜᴇ sᴇQᴜᴇɴᴄᴇᴅ ꜰɪʟᴇs.
-
-SᴇQᴜᴇɴᴄᴇ Bᴏᴛ: @RinNohara_xBot
-    
-    """
-        
-    START_TXT = """Hᴇʟʟᴏ {}
-I'ᴍ **Oʙɪᴛᴏ Uᴄʜɪʜᴀ**, ᴀɴ ᴀᴜᴛᴏʀᴇɴᴀᴍᴇ ʙᴏᴛ ᴛʜᴀᴛ ʀᴇɴᴀᴍᴇs ᴀɴɪᴍᴇ ғɪʟᴇs ᴛᴏ ᴛʜᴇ ғᴏʀᴍᴀᴛ ʏᴏᴜ sᴇᴛ."
+"""
+START_TXT = """Hᴇʟʟᴏ {}
+I'ᴍ **Zenoiiii**, ᴀɴ ᴀᴜᴛᴏʀᴇɴᴀᴍᴇ ʙᴏᴛ ᴛʜᴀᴛ ʀᴇɴᴀᴍᴇs ᴀɴɪᴍᴇ ғɪʟᴇs ᴛᴏ ᴛʜᴇ ғᴏʀᴍᴀᴛ ʏᴏᴜ sᴇᴛ."
 Tᴏ sᴇᴇ ᴍʏ ғᴜɴᴄᴛɪᴏɴs, ᴜsᴇ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ʙᴇʟᴏᴡ."""
     
     FILE_NAME_TXT = """
@@ -44,13 +32,10 @@ Tᴏ sᴇᴇ ᴍʏ ғᴜɴᴄᴛɪᴏɴs, ᴜsᴇ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ʙ�
     """
     
     ABOUT_TXT = f"""<b>╭───────────⍟
-├🤖 My name: <a href=http://t.me/UchihaObito_xBot>Uᴄʜɪʜᴀ Oʙɪᴛᴏ</a>
+├🤖 My name: <a href=http://t.me/Itz_Zeno>Zeno</a>
 ├📕 Library: <a href=https://github.com/pyrogram>Pyʀᴏɢʀᴀᴍ</a>
 ├✏️ Language: <a href=https://www.python.org>Pyᴛʜᴏɴ3</a>
-├💾 Data Base: <a href=https://cloud.mongodb.com>Mᴏɴɢᴏ DB</a>
-├📊 Build Version: `OBI V1.7.0`
-├🔗 GitHub: <a href=https://github.com/illuminati-Dev>GitHub</a>
-├📧 Contact: <a href=https://telegram.me/The_NanamiiKento>N A N A M I</a>
+├📧 Contact: <a href=https://telegram.me/Itz_Zeno>Zeno</a>
 ╰───────────────⍟ 
 """
 
@@ -59,8 +44,7 @@ Tᴏ sᴇᴇ ᴍʏ ғᴜɴᴄᴛɪᴏɴs, ᴜsᴇ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ʙ�
 • /del_thumb to delete your old thumbnail.
 • /view_thumb to view your current thumbnail."""
 
-    PREMIUM_TXT = """Hm Soon
-    for now free use kr lo"""
+    PREMIUM_TXT = """Mera Dil Bahut accha hai isliye Sab Free Me use krlo 😌"""
 
 #⚠️ Dᴏɴ'ᴛ Rᴇᴍᴏᴠᴇ Oᴜʀ Cʀᴇᴅɪᴛꜱ @ᴩyʀᴏ_ʙᴏᴛᴢ🙏🥲
     COMMANDS_TXT = """🌌 How To Set Thumbnail
