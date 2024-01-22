@@ -15,8 +15,8 @@ async def start(client, message):
     
     button = InlineKeyboardMarkup([
         [InlineKeyboardButton("Commands", callback_data='commands')],
-        [InlineKeyboardButton('Updates', url='https://t.me/UchihaPoliceUpdates'),
-         InlineKeyboardButton('Support', url='https://t.me/UchihaPolice_Support')],
+        [InlineKeyboardButton('Movie', url='https://t.me/Netflix_Dual'),
+         InlineKeyboardButton('Support', url='Anime_Madrid')],
         [InlineKeyboardButton('Help', callback_data='about')]
     ])
 
@@ -36,8 +36,8 @@ async def cb_handler(client, query: CallbackQuery):
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([
                 [InlineKeyboardButton("Commands", callback_data='commands')],
-                [InlineKeyboardButton('Updates', url='https://t.me/UchihaPoliceUpdates'),
-                 InlineKeyboardButton('Support', url='https://t.me/UchihaPolice_Support')],
+                [InlineKeyboardButton('Movies', url='https://t.me/Netflix_Dual'),
+                 InlineKeyboardButton('Support', url='https://t.m/Anime_Madrid')],
                 [InlineKeyboardButton('Help', callback_data='about')]
             ])
         )
@@ -48,7 +48,7 @@ async def cb_handler(client, query: CallbackQuery):
         await query.message.edit_caption(
             caption=Txt.ABOUT_TXT.format(client.mention),
             reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("Set Username Format", callback_data='file_names')],
+                [InlineKeyboardButton("Developer", callback_data='https://t.me/itz_Zeno')],
                 [InlineKeyboardButton('Thumbnail', callback_data='thumbnail'),
                  InlineKeyboardButton('Sequence', callback_data='sequence')],
                 [InlineKeyboardButton('Home', callback_data='start')]
@@ -59,7 +59,7 @@ async def cb_handler(client, query: CallbackQuery):
             text=Txt.SEQUENCE_TXT,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("Rɪɴ Nᴏʜᴀʀᴀ", url='https://t.me/RinNohara_xBot')],
+                [InlineKeyboardButton("Netflix", url='https://t.me/Netflix_Dual')],
                 [InlineKeyboardButton("Close", callback_data="close"),
                  InlineKeyboardButton("Back", callback_data="start")]
             ])
