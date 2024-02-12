@@ -36,7 +36,7 @@ Oʀᴇ Nᴏ Nᴀᴡᴀ **Mɪᴋᴜ Nᴀᴋᴀɴᴏ**, ᴀ ꜰᴀsᴛ ᴀᴜᴛ�
 ᴛᴏ ᴋɴᴏᴡ ᴡʜᴀᴛ I'ᴍ ᴄᴀᴘᴀʙʟᴇ ᴏꜰ ᴏᴛʜᴇʀ ᴛʜᴀɴ ᴍᴀss-ᴍᴀssᴀᴄʀᴇ, ʙᴇᴛᴛᴇʀ ᴜsᴇ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ʙᴇʟᴏᴡ.. 🕊️"""
     
     FILE_NAME_TXT = """
-    <u><b>SETUP AUTO RENAME FORMAT</b></u>\n\nUse These Keywords To Setup Custom File Name\n\n➝ episode :- to replace episode number\n➝ quality :- to replace video resolution\n\n‣ <b>Example :</b> /autorename [CW] Attack on Titan S1 - episode [quality] [Dual] @Anime_Kun_Channel.mkv\n\n‣ <b>Your Current Rename Format :</b> {format_template}
+    <u><b>SETUP AUTO RENAME FORMAT</b></u>\n\nUse These Keywords To Setup Custom File Name\n\n➝ episode :- to replace episode number\n➝ quality :- to replace video resolution\n\n‣ <b>Example :</b> /autorename [CW] Attack on Titan S1 - episode [quality] [Dual] @Anime_Kun_Channel\n\n‣ <b>Your Current Rename Format :</b> {format_template}
     """
     
     ABOUT_TXT = f"""<b>╭───────────⍟
@@ -70,7 +70,7 @@ Example: /set_caption 📕 File Name: {filename}
 ⏰ Duration: {duration}
 
 ✏️ How To Rename A File
-• First set /autorename format then send your files. Eg: /autorename [S01-episode] Attack on Titan [quality] [Dual] @Anime_Kun_Channel.mkv
+• First set /autorename format then send your files. Eg: /autorename [S01-episode] Attack on Titan [quality] [Dual] @Anime_Kun_Channel
 
 ‣ Available Variables
 » <code>episode</code>
