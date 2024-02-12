@@ -31,7 +31,7 @@ async def progress_for_pyrogram(current, total, ud_type, message, start):
         try:
             await message.edit(
                 text=f"{ud_type}\n\n{tmp}",               
-                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✖️ 𝙲𝙰𝙽𝙲𝙴𝙻 ✖️", callback_data="close")]])                                               
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✖️ CANCEL ✖️", callback_data="close")]])                                               
             )
         except:
             pass
@@ -72,7 +72,7 @@ def convert(seconds):
 
 async def send_log(b, u):
     if Config.LOG_CHANNEL is not None:
-        curr = datetime.now(timezone("Asia/Kolkata"))
+        curr = datetime.now(timezone("Asia/Dhaka"))
         date = curr.strftime('%d %B, %Y')
         time = curr.strftime('%I:%M:%S %p')
         await b.send_message(
