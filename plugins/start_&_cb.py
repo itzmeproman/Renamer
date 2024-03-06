@@ -62,7 +62,7 @@ async def cb_handler(client, query: CallbackQuery):
         )
     elif data == "sequence" and query.message.document:
     # Add file to the sequence_files dictionary
-    sequence_files[query.message.document.file_name] = query.message.document.file_id
+        sequence_files[query.message.document.file_name] = query.message.document.file_id
     await query.message.edit_text(
         text=f"File '{query.message.document.file_name}' added to the sequence.",
         disable_web_page_preview=True
