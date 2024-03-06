@@ -59,16 +59,15 @@ async def cb_handler(client, query: CallbackQuery):
                 [InlineKeyboardButton('Home', callback_data='start')]
             ])
         )
-    elif data == "sequence":
-        await query.message.edit_text(
-            text=Txt.SEQUENCE_TXT,
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("Owner", url='https://t.me/Chowdhury_Siam')],
-                [InlineKeyboardButton("Close", callback_data="close"),
-                 InlineKeyboardButton("Back", callback_data="start")]
-            ])
-        )
+    elif data == "sequence" and query.message.document:
+    # Add file to the sequence_files dictionary
+    sequence_files[query.message.document.file_name] = query.message.document.file_id
+    await query.message.edit_text(
+        text=f"File '{query.message.document.file_name}' added to the sequence.",
+        disable_web_page_preview=True
+    )
+
+
     elif data == "commands":
         await query.message.edit_text(
             text=Txt.COMMANDS_TXT,
