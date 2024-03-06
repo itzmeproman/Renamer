@@ -9,6 +9,11 @@ maintenance_manager = MaintenanceManager()
 maintenance_check_wrapper = maintenance_manager.maintenance_mode_check
 
 @app.on_message(filters.private & filters.command("start"))
+
+
+sequence_files = {}  # Empty dictionary to store unsequenced files
+
+
 async def start(client, message):
     user = message.from_user
     await db.add_user(client, message)
